@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SimRacingVault | Simsonn Load-Cell Upgrades & Discount Code</title>
+  <!-- Google Fonts for High-Performance Tech Vibes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+  <!-- Glowing Background Radar Effects -->
+  <div class="glow-bg"></div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <svg class="logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+        </svg>
+        <span class="logo-title">SIMRACING<span>VAULT</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="#calculator">Kalkulator Czasu</a>
+        <a href="#why-simsonn">Dlaczego SIMSONN?</a>
+        <a href="#products">Produkty</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-badge">ZAAWANSOWANE ULEPSZENIE DLA SIMRACERÓW</div>
+      <h1 class="hero-title">ZYSKAJ DZIESIĄTNE SEKUNDY DZIĘKI <span class="highlight">LOAD-CELL</span></h1>
+      <p class="hero-desc">
+        Hamulec i gaz decydują o większości straconych dziesiątych części sekundy na okrążeniu. Zwykłe pedały potencjometryczne mierzą dystans ruchu stopy — przez co każde dohamowanie jest trochę inne. Pedały SIMSONN Load-Cell mierzą siłę nacisku stopy, co pozwala wyrobić pamięć mięśniową i hamować identycznie za każdym razem.
+      </p>
+
+      <!-- Promo Code Banner -->
+      <div class="promo-box">
+        <div class="promo-info">
+          <span class="promo-tag">OFICJALNY KOD RABATOWY SIMSONN (8% ZNIŻKI)</span>
+          <div class="promo-code" id="couponCode">SIMRACING</div>
+        </div>
+        <button class="btn-promo" id="copyBtn">
+          <span id="copyBtnText">SKOPIUJ KOD</span>
+          <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        </button>
+      </div>
+      
+      <!-- Notification element for copy feedback -->
+      <div class="copy-toast" id="copyToast">Skopiowano kod partnerski! 8% rabatu aktywne.</div>
+    </div>
+  </section>
+
+  <!-- Main Content Grid -->
+  <main class="content-container">
+
+    <!-- Interactive Calculator Section -->
+    <section class="section card" id="calculator">
+      <div class="section-header">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </div>
+        <h2>Kalkulator Poprawy Czasu Okrążeń (Load-Cell vs Potencjometr)</h2>
+      </div>
+      
+      <p class="section-desc">
+        Sprawdź, jak wymiana pedałów przełoży się na Twoje wyniki w grach takich jak Assetto Corsa Competizione, iRacing, F1 czy Gran Turismo.
+      </p>
+
+      <div class="calc-grid">
+        <!-- Inputs -->
+        <div class="calc-inputs">
+          <div class="form-group">
+            <label for="currentPedals">Twoje obecne pedały:</label>
+            <select id="currentPedals">
+              <option value="logitech">Logitech G29 / G920 / G293 (sprężyna)</option>
+              <option value="thrustmaster">Thrustmaster T3PA / T3PA-Pro (potencjometr)</option>
+              <option value="moza_fanatec_pot">Moza SRP Lite / Fanatec CSL Pedals (bez load-cell)</option>
+              <option value="generic">Inne podstawowe pedały potencjometryczne</option>
+              <option value="tlcm">Thrustmaster T-LCM (load-cell na hamulcu)</option>
+              <option value="loadcell_other">Inny load-cell (Fanatec CSL LC, Heusinkveld itp.)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="lapTime">Twój średni czas okrążenia na torze (sekundy):</label>
+            <div class="input-wrap">
+              <input type="number" id="lapTime" min="30" max="300" value="95">
+              <span class="unit">sekund</span>
+            </div>
+            <span class="input-hint">Wpisz np. 95 sekund dla okrążenia trwającego 1m 35s.</span>
+          </div>
+        </div>
+
+        <!-- Outputs -->
+        <div class="calc-outputs">
+          <div class="output-card highlight">
+            <span class="output-label">Szacowana oszczędność czasu na okrążeniu:</span>
+            <span class="output-val" id="timeSaved">-0.72s</span>
+            <span class="output-desc">Im dłuższy tor i trudniejsze strefy hamowania, tym zysk jest większy.</span>
+          </div>
+
+          <div class="progress-block">
+            <div class="progress-label-row">
+              <span>Powtarzalność hamowania (Pamięć mięśniowa):</span>
+              <span id="progressVal">92%</span>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar-fill" id="progressBar"></div>
+            </div>
+            <span class="progress-desc" id="progressDesc">Load-cell pozwala na powtarzanie tej samej siły hamowania z dokładnością chirurgiczną.</span>
+          </div>
+
+          <!-- Where tenths are lost explainer -->
+          <div class="time-breakdown">
+            <div class="time-breakdown-title">Gdzie tracą się dziesiąte części sekundy na okrążeniu?</div>
+            <div class="time-breakdown-grid">
+              <div class="tb-item tb-brake">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+                <div>
+                  <strong>Strefa hamowania</strong>
+                  <span>Za późno lub za wcześnie o 0.1s = 0.15–0.3s straty. Load-cell daje powtarzalny punkt dohamowywania dzięki pamięci mięśniowej.</span>
+                </div>
+              </div>
+              <div class="tb-item tb-throttle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                <div>
+                  <strong>Dodawanie gazu z zakrętu</strong>
+                  <span>Agresywne lub niepowtarzalne dodawanie gazu powoduje boczne ślizgi i utratę przyczepności. Precyzyjny pedal gazu z czujnikiem Halla daje płynniejszą charakterystykę.</span>
+                </div>
+              </div>
+              <div class="tb-item tb-trailbrake">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22V12M12 12C12 12 6 9 6 5a6 6 0 0 1 12 0c0 4-6 7-6 7z"/></svg>
+                <div>
+                  <strong>Trail braking (zwalnianie w zakręcie)</strong>
+                  <span>Stopniowe odpuszczanie hamulca przez łuk zakrętu to technika profesjonalistów. Możliwa tylko z load-cell — potencjometr nie ma wystarczającej precyzji na końcu skoku.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COCKPIT WARNING BANNER -->
+    <div class="rig-warning-banner">
+      <div class="rig-warning-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+      </div>
+      <div class="rig-warning-text">
+        <strong>Zanim kupisz pedały SIMSONN — potrzebujesz solidnego stojaka lub kokpitu!</strong>
+        Pedały są przykręcane śrubami do profili aluminiowych lub bazy stojaka. Nie działają na biurku ani na zwykłym krześle — przy sile 50+ kg na hamulcu cały zestaw by się odsunął. <strong>Kolejność: najpierw stojak (np. Playseat Challenge, Next Level F-GT, GT Omega) — potem pedały.</strong>
+      </div>
+    </div>
+
+    <!-- Rig Upgrade Path Advisor -->
+    <section class="section card" id="advisor">
+      <div class="section-header">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        </div>
+        <h2>Asystent Ulepszeń Riga (Gdzie jest Twoje wąskie gardło?)</h2>
+      </div>
+
+      <p class="section-desc">
+        Wybierz swój obecny zestaw simracingowy, aby dowiedzieć się, które ulepszenie da Ci najwięcej realizmu i najszybciej skróci Twoje czasy na torze.
+      </p>
+
+      <div class="advisor-interface">
+        <div class="rig-options">
+          <button class="rig-btn active" data-rig="desk_logitech">
+            <span class="rig-btn-title">Gram na biurku / krześle</span>
+            <span class="rig-btn-subtitle">Brak stojaka lub kokpitu</span>
+          </button>
+          <button class="rig-btn" data-rig="stand_any">
+            <span class="rig-btn-title">Mam stojak / kokpit</span>
+            <span class="rig-btn-subtitle">Wheelstand, profil aluminiowy, fotel racingowy</span>
+          </button>
+          <button class="rig-btn" data-rig="dd_basic">
+            <span class="rig-btn-title">Kierownica DD + zwykłe pedały</span>
+            <span class="rig-btn-subtitle">Mocna baza i fabryczne pedały</span>
+          </button>
+        </div>
+
+        <div class="advisor-result" id="advisorResult">
+          <div class="result-badge" style="background: rgba(255, 180, 0, 0.1); border-color: rgba(255, 180, 0, 0.3); color: #ffb400;">⚠️ KROK 1: KONIECZNY SOLIDNY STOJAK</div>
+          <h3>Najpierw stojak — potem pedały SIMSONN</h3>
+          <p style="line-height: 1.8">Pedały SIMSONN wymagają montażu do stałej podstawy — śrubami lub zaciskami do profili aluminiowych. Nie da się ich używać na biurku ani na zwykłym krześle, bo przy nacisku 30–80 kg na pedał hamulca cały zestaw by się odsunął.<br><br>
+            <strong>Kolejność zakupów:</strong><br>
+            1️⃣ Solidny Wheelstand (np. Playseat Challenge, Next Level F-GT, GT Omega Apex) lub aluminiowy kokpit<br>
+            2️⃣ Dopiero wtedy pedały SIMSONN Load-Cell<br><br>
+            Po zamontowaniu pedałów na stojaku zysk jest realny — koniec z blokowaniem kół w momentach silnego hamowania, lepsza kontrola Trail Brakingu.
+          </p>
+          <div class="result-actions">
+            <a href="https://www.simsonn.com/?ref=simracing" target="_blank" class="btn-primary">Sprawdź pedały SIMSONN</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY SIMSONN Section -->
+    <section class="section" id="why-simsonn">
+      <div class="section-title-center">
+        <h2>DLACZEGO WŁAŚNIE SIMSONN?</h2>
+        <p>Konkretne powody, dla których tysiące simracerów na całym świecie wybrało SIMSONN jako pierwszą i jedyną poważną inwestycję w swój rig.</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <h3>Stal nierdzewna 3mm grubości</h3>
+          <p>Podczas gdy Fanatec V3 i Heusinkveld mają plastikowe lub aluminiowe elementy w tej cenie, SIMSONN używa wyłącznie stali nierdzewnej ciętej laserem. Pedały nie odkształcają się pod naciskiem nawet 130 kg — identycznie jak pedały w prawdziwych samochodach wyścigowych.</p>
+          <span class="why-vs">vs. Logitech G29: plastik + sprężyna</span>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 9.17 4.24-4.24"></path><path d="m14.83 14.83 4.24 4.24"></path><path d="m9.17 14.83-4.24 4.24"></path><circle cx="12" cy="12" r="4"></circle></svg>
+          </div>
+          <h3>Czujnik halla na gazie i sprzęgle</h3>
+          <p>Większość tanich i średnich zestawów (Logitech, Thrustmaster, Moza SRP Lite, Fanatec CSL bez LC) używa zwykłych potencjometrów, które zużywają się i dryfują po roku użytkowania. SIMSONN stosuje bezkontaktowe czujniki efektu Halla (jak w myszach optycznych) na każdym z trzech pedałów &mdash; praktycznie bezawaryjne na lata.</p>
+          <span class="why-vs">vs. T3PA / Moza SRP Lite / Fanatec CSL pot: potencjometry zużywalne</span>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          </div>
+          <h3>Tryb sprzężenia zwrotnego (Haptics)</h3>
+          <p>Modele Pro X Ultra i Plus X z opcjonalnym modułem VAM Neo (Linear Motor, od $47.90) przekazują wibracje bezpośrednio na pedał hamulca. Czujesz moment, gdy koło zaczyna się blokować — tak jak w prawdziwym aucie wyścigowym z systemem antypoślizgowym (ABS). Żaden inny producent w tej cenie nie oferuje tej funkcji.</p>
+          <span class="why-vs">Unikalne: tylko SIMSONN w tej cenie</span>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          </div>
+          <h3>Cena: od $271.90 za kompletny stalowy zestaw</h3>
+          <p>Pełne porównanie rynku:</p>
+          <ul style="margin: 8px 0 8px 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--text-muted);">
+            <li>🔴 Logitech G29 pedały — plastik, sprężyna — ok. <strong>~$30</strong> (w zestawie)</li>
+            <li>🔴 Thrustmaster T3PA — metalowe nakrówki, sprężyna — ok. <strong>~$70</strong></li>
+            <li>🟡 Moza SRP Lite — lepsza mechanika, wciąż potencjometr — ok. <strong>~$100</strong></li>
+            <li>🟡 Fanatec CSL Pedals (bez LC) — metal, wciąż potencjometr — ok. <strong>~$80</strong></li>
+            <li>🟢 <strong>SIMSONN Plus X (3 pedały, stal, Load-Cell)</strong> — <strong>$271.90 → $250.15</strong> z kodem</li>
+            <li>🟢 Fanatec CSL LC (load-cell, ale plastikowa rama) — ok. <strong>$199</strong></li>
+            <li>⬜ Heusinkveld Sprint (pełny metal, load-cell) — ok. <strong>$599</strong></li>
+          </ul>
+          <p style="font-size: 12px; color: var(--text-dark);">SIMSONN daje stalowy load-cell w cenie, za którą Fanatec sprzedaje plastikową ramę z load-cellem.</p>
+          <span class="why-vs">SIMSONN: najlepsza relacja metal + load-cell w tej cenie</span>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"></path><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"></path><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"></path><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"></path><path d="M15.5 9H17v1.5c0 .83-.67 1.5-1.5 1.5S14 11.33 14 10.5 14.67 9 15.5 9z"></path><path d="M10 9.5c0 .83-.67 1.5-1.5 1.5h-5C2.67 11 2 10.33 2 9.5S2.67 8 3.5 8h5c.83 0 1.5.67 1.5 1.5z"></path><path d="M8.5 15H7v-1.5c0-.83.67-1.5 1.5-1.5S10 12.67 10 13.5 9.33 15 8.5 15z"></path></svg>
+          </div>
+          <h3>Modułowa budowa — sam decydujesz, co dokupujesz</h3>
+          <p>SIMSONN sprzedaje każdy pedał z osobna, moduł haptyczny z osobna, skrzynkę sterującą z osobna i zestaw sprężyn z osobna. Zaczynasz od samego hamulca Load-Cell ($96.59), a potem dokupujesz moduł haptyczny VAM ($47.90) lub dodatkowy pedał sprzęgła ($96.59) wtedy, gdy masz na to budżet. Żaden konkurent w tej cenie nie oferuje takiej modułowości.</p>
+          <span class="why-vs">Zacznij od hamulca, rozbudowuj kiedy chcesz</span>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <h3>Aktywna społeczność i Discord z supportem</h3>
+          <p>SIMSONN posiada aktywny serwer Discord z kanałami do pomocy technicznej, tutorialami kalibracji w iRacing, ACC i F1, oraz regularnymi aktualizacjami oprogramowania. Producent aktywnie odpowiada na pytania i wprowadza sugestie użytkowników do kolejnych wersji produktów — coś niespotkanego w tej cenie.</p>
+          <span class="why-vs">Wsparcie jak premium brand, cena jak budżetowy</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIMSONN Products Showcase -->
+    <section class="section" id="products">
+      <div class="section-title-center">
+        <h2>POLECANY SPRZĘT SIMSONN Z KODEM SIMRACING (-8%)</h2>
+        <p>Prawdziwe ceny ze sklepu SIMSONN. Kliknij produkt, aby przejść na stronę sprzedawcy. Pamiętaj o kodzie rabatowym <strong>SIMRACING</strong> przy kasie.</p>
+      </div>
+
+      <div class="products-grid">
+
+        <!-- Product 1: Plus X Hydraulic Pedal Set - FLAGSHIP -->
+        <div class="product-card">
+          <div class="prod-img-wrap">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0770/0008/1722/files/simsonn-plus-x-hydraulic-pedal-black-set-9242820.png?v=1770382694"
+              alt="Simsonn Plus X Hydraulic Load Cell Pedal Set"
+              class="prod-real-img"
+            >
+            <span class="badge-hot">BESTSELLER</span>
+          </div>
+          <div class="prod-info">
+            <h3>Simsonn Plus X Hydraulic Pedal Black Set</h3>
+            <p class="prod-desc">
+              Kompletny 3-pedałowy zestaw ze stali nierdzewnej z czujnikiem Load-Cell na hamulcu. Idealny start dla każdego simracera przesiadającego się z plastikowych pedałów fabrycznych. Bezpośrednie podłączenie USB, plug & play.
+            </p>
+            <ul class="prod-features">
+              <li>✅ Kompletny zestaw 3 pedałów (gaz, hamulec, sprzęgło)</li>
+              <li>✅ Load-Cell na hamulcu + czujniki Halla na gazie</li>
+              <li>✅ Stalowa konstrukcja 3mm laser-cut</li>
+              <li>✅ Pełna regulacja kąta, skoku i twardości</li>
+            </ul>
+            <div class="prod-action-row">
+              <div class="price-box">
+                <span class="price-label">Z kodem SIMRACING (-8%)</span>
+                <span class="price-val">$271.90 → <span style="color:var(--primary)">$250.15</span></span>
+              </div>
+              <a href="https://www.simsonn.com/products/simsonn-plus-x-load-cell-pedal-set?ref=simracing" target="_blank" class="btn-buy">Kup na SIMSONN.COM</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2: Pro X Ultra Pedals with Haptics & RGB -->
+        <div class="product-card">
+          <div class="prod-img-wrap">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0770/0008/1722/files/newest-simsonn-pedal-pro-x-ultra-with-haptics-and-rgb-feedback-4295662.png?v=1770382693"
+              alt="Simsonn Pro X Ultra Pedals with Haptics RGB"
+              class="prod-real-img"
+            >
+            <span class="badge-hot" style="background:var(--primary);color:#000;">NOWOŚĆ + HAPTICS</span>
+          </div>
+          <div class="prod-info">
+            <h3>Simsonn Pro X Ultra — Pedały z Haptycznym Sprzężeniem Zwrotnym i RGB</h3>
+            <p class="prod-desc">
+              Flagowy model SIMSONN. Moduł VAM Linear Motor wbudowany bezpośrednio w pedał hamulca. Czujesz moment blokowania kół w postaci fizycznych wibracji na stopie — jak ABS w prawdziwym samochodzie wyścigowym. Podświetlenie RGB jako wskaźnik stanu pedałów.
+            </p>
+            <ul class="prod-features">
+              <li>✅ Wbudowany moduł haptyczny VAM (Linear Motor)</li>
+              <li>✅ Podświetlenie RGB jako wizualny wskaźnik</li>
+              <li>✅ Load-Cell + czujniki Halla na wszystkich 3 pedałach</li>
+              <li>✅ Stalowa rama 4mm z wykończeniem na szczotce</li>
+            </ul>
+            <div class="prod-action-row">
+              <div class="price-box">
+                <span class="price-label">Z kodem SIMRACING (-8%)</span>
+                <span class="price-val">$499.00 → <span style="color:var(--primary)">$459.08</span></span>
+              </div>
+              <a href="https://www.simsonn.com/products/simsonn-pro-x-ultra-pedal-with-haptics?ref=simracing" target="_blank" class="btn-buy">Kup na SIMSONN.COM</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3: Plus X with Haptics -->
+        <div class="product-card">
+          <div class="prod-img-wrap">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0770/0008/1722/files/simsonn-plus-x-hydraulic-pedal-black-set-7404690.png?v=1770382696"
+              alt="Simsonn Plus X Pedals with Haptics Reactor"
+              class="prod-real-img"
+            >
+          </div>
+          <div class="prod-info">
+            <h3>Simsonn Plus X — Pedały Load-Cell z Modułem Haptycznym</h3>
+            <p class="prod-desc">
+              Wersja Plus X z dołączonym zewnętrznym modułem VAM Haptic Reactor. Kompletny pakiet do immersyjnego simracingu: stalowe pedały + haptyka w atrakcyjnej cenie zestawu. Idealne dla graczy w DiRT Rally, ACC i iRacing.
+            </p>
+            <ul class="prod-features">
+              <li>✅ Plus X pedały + moduł VAM w zestawie</li>
+              <li>✅ Wibracje w stopie w strefach hamowania</li>
+              <li>✅ Modułowa budowa (dokup więcej akcesoriów kiedy chcesz)</li>
+              <li>✅ Kompatybilny ze wszystkimi glifami simracingowymi</li>
+            </ul>
+            <div class="prod-action-row">
+              <div class="price-box">
+                <span class="price-label">Z kodem SIMRACING (-8%)</span>
+                <span class="price-val">$427.90 → <span style="color:var(--primary)">$393.67</span></span>
+              </div>
+              <a href="https://www.simsonn.com/products/simsonn-plus-x-pedal-for-racing-simulator?ref=simracing" target="_blank" class="btn-buy">Kup na SIMSONN.COM</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4: HS Pro Dual Mode Shifter -->
+        <div class="product-card">
+          <div class="prod-img-wrap">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0770/0008/1722/files/simsonn-hs-pro-shifter-the-hsq-dual-mode-racing-simulation-shifter-9621327.png?v=1770382689"
+              alt="Simsonn HS Pro Dual-Mode Shifter"
+              class="prod-real-img"
+            >
+          </div>
+          <div class="prod-info">
+            <h3>Simsonn HS Pro Shifter — Dwutrybowa Skrzynia Biegów H+SQ</h3>
+            <p class="prod-desc">
+              Sekwencyjna i H-Pattern skrzynia biegów w jednym urządzeniu. Przełącz między trybami jednym ruchem. Solidna metalowa konstrukcja z regulacją sprężyny. Idealna do gier WRC, Assetto Corsa, truckers i każdej gry z manualną skrzynią.
+            </p>
+            <ul class="prod-features">
+              <li>✅ Tryb H-Pattern i Sekwencyjny (SQ) jednym urządzeniem</li>
+              <li>✅ Regulacja oporu i skoku dźwigni</li>
+              <li>✅ Metalowa obudowa, brak plastiku w krytycznych miejscach</li>
+              <li>✅ USB plug & play, działa w każdym symulatorie</li>
+            </ul>
+            <div class="prod-action-row">
+              <div class="price-box">
+                <span class="price-label">Z kodem SIMRACING (-8%)</span>
+                <span class="price-val">$139.00 → <span style="color:var(--primary)">$127.88</span></span>
+              </div>
+              <a href="https://www.simsonn.com/products/simsonn-hs-pro-dual-mode-shifter?ref=simracing" target="_blank" class="btn-buy">Kup na SIMSONN.COM</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Sim Racing FAQ Section -->
+    <section class="section card" id="faq">
+      <div class="section-header">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        </div>
+        <h2>Często Zadawane Pytania (FAQ)</h2>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <h4>Dlaczego czujnik Load-Cell jest lepszy od potencjometru?</h4>
+          <p>
+            Zwykłe pedały (potencjometry) mierzą odległość, o jaką przesunął się pedał. Ludzki mózg nie potrafi powtarzalnie kontrolować kąta zgięcia stopy. Pedały **Load-Cell** mierzą nacisk (kilogramy). Twój mózg uczy się pamięci mięśniowej (np. „siła potrzebna do wyhamowania ze 100 km/h to 30 kg nacisku”). Dzięki temu każdą strefę hamowania pokonujesz z identyczną, powtarzalną siłą, co eliminuje błędy i blokowanie kół.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Czy pedały SIMSONN są kompatybilne z konsolami (Xbox / Playstation)?</h4>
+          <p>
+            Pedały posiadają dedykowany kontroler USB i natywnie współpracują z komputerami PC (Windows 10/11) jako osobne urządzenie kontrolera do gier. Aby uruchomić je na konsolach Xbox lub PlayStation, wymagane jest użycie zewnętrznego adaptera łączącego akcesoria (np. Ras1ution 2, DriveHub lub GIMX).
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Jak wygląda kalibracja pedałów SIMSONN?</h4>
+          <p>
+            Pedały działają na standardowych sterownikach USB Windows. Możesz je bardzo łatwo skalibrować za pomocą darmowego programu **DIView** lub dedykowanego oprogramowania konfiguracyjnego SIMSONN. Ustawiasz w nich martwe strefy (deadzones) oraz maksymalną siłę nacisku (np. aby osiągnąć 100% hamowania przy 40 kg nacisku stopy, zamiast pełnych 130 kg).
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Czy pedały wymagają sztywnego kokpitu?</h4>
+          <p>
+            Ponieważ pedał hamulca Load-Cell wymaga wywarcia sporego nacisku stopy (elastomery stawiają silny fizyczny opór), zaleca się montaż pedałów do stojaka (Wheelstand) lub kokpitu z profili aluminiowych. Jeżeli grasz na krześle biurowym na kółkach, warto wyposażyć je w blokady kółek (stopery) lub spiąć krzesło ze stojakiem, aby zapobiec odsuwaniu się krzesła podczas mocnego hamowania.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <p class="disclaimer">
+        **Nota partnerska**: Niniejsza strona jest niezależnym portalem recenzenckim i doradczym. Klikając w odnośniki do sklepu SIMSONN, kupujesz produkt z oficjalnym kodem rabatowym `SIMRACING` (8% zniżki), a autor tej strony otrzymuje niewielką prowizję od sprzedaży (5%), co pozwala na jej utrzymanie i dalsze testy sprzętu. Dziękujemy za wsparcie!
+      </p>
+      <div class="footer-bottom">
+        <p>&copy; 2026 SimRacingVault. Wszelkie prawa zastrzeżone.</p>
+        <span class="status-indicator-green">
+          <span class="dot"></span> Promo Code "SIMRACING" Active
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
