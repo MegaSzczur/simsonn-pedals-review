@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jantyc.github.io/hopeful-volta/sitemap.xml
+Sitemap: https://megaszczur.github.io/simsonn-pedals-review//sitemap.xml
